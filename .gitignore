@@ -1,0 +1,5 @@
+*.csv
+IMG/*
+validation/*
+.DS_Store
+
