@@ -6,9 +6,18 @@ from keras.layers.core import Flatten
 from keras.layers.pooling import MaxPooling2D
 from keras.models import Sequential
 
+from optparse import OptionParser
+
 from loader import data
 
-X_train, y_train = data.load_data('/Users/ctang/dev/CarND-Behavioral-Cloning-P3')
+parser = OptionParser()
+parser.add_option("-l", "--driving-log", dest="log",
+                  help="location of driving log", metavar="FILE")
+parser.add_option("-i", "--images", dest="images",
+                  help="location of images", metavar="FILE")
+options, args = parser.parse_args()
+
+X_train, y_train = data.load_data(options.log, options.images)
 
 input_shape = X_train.shape[1:]
 N = X_train.shape[0]

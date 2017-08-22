@@ -3,15 +3,15 @@ import cv2
 import numpy as np
 import os
 
-def load_data(data_dir):
+def load_data(log, img_dir):
     images = []
     measurements = []
-    with open(os.path.join(data_dir, 'driving_log.csv')) as csvfile:
+    with open(os.path.join(log)) as csvfile:
         reader = csv.reader(csvfile)
         for line in reader:
             source_path = line[0]
             filename = source_path.split('/')[-1]
-            current_path = os.path.join(data_dir, 'IMG', filename)
+            current_path = os.path.join(img_dir, filename)
             image = cv2.imread(current_path)
             images.append(image)
             measurement = float(line[3])
