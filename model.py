@@ -17,6 +17,8 @@ parser.add_argument('-l', action="store", dest="log")
 parser.add_argument('--epochs', type=int, default=60)
 parser.add_argument('--droprate', type=float, default=0.5)
 parser.add_argument('--activation', action="store", dest="activation", default='relu')
+parser.add_argument('--conv1filters', type=int, default=12)
+parser.add_argument('--conv2filters', type=int, default=32)
 
 args = parser.parse_args()
 print(args)
@@ -32,8 +34,8 @@ epochs = args.epochs
 learning_rate = args.lr
 droprate = args.droprate
 activation = args.activation
-conv1_nfilters = 12
-conv2_nfilters = 32
+conv1_nfilters = args.conv1filters
+conv2_nfilters = args.conv1filters
 fc1_nodes = 120
 fc2_nodes = 84
 
