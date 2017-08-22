@@ -4,4 +4,5 @@ validation/*
 .DS_Store
 loader/__pycache__
 .idea
-
+*.h5
+data*
