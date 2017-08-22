@@ -2,4 +2,6 @@
 IMG/*
 validation/*
 .DS_Store
+loader/__pycache__
+.idea
 
