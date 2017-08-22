@@ -6,32 +6,36 @@ from keras.layers.core import Flatten
 from keras.layers.pooling import MaxPooling2D
 from keras.models import Sequential
 
-from optparse import OptionParser
+from argparse import ArgumentParser
 
 from loader import data
 
-parser = OptionParser()
-parser.add_option("-l", "--driving-log", dest="log",
-                  help="location of driving log", metavar="FILE")
-parser.add_option("-i", "--images", dest="images",
-                  help="location of images", metavar="FILE")
-options, args = parser.parse_args()
+parser = ArgumentParser(description='Train an autonomous vehicle model')
+parser.add_argument('-lr', type=float, default=None)
+parser.add_argument('-i', action="store", dest="images")
+parser.add_argument('-l', action="store", dest="log")
+parser.add_argument('--epochs', type=int, default=60)
+parser.add_argument('--droprate', type=float, default=0.5)
+parser.add_argument('--activation', action="store", dest="activation", default='relu')
 
-X_train, y_train = data.load_data(options.log, options.images)
+args = parser.parse_args()
+print(args)
+
+X_train, y_train = data.load_data(args.log, args.images)
 
 input_shape = X_train.shape[1:]
 N = X_train.shape[0]
 
 print("Loaded %d samples of shape %s" % (N, input_shape))
 
-epochs = 60
-droprate = 0.5
+epochs = args.epochs
+learning_rate = args.lr
+droprate = args.droprate
+activation = args.activation
 conv1_nfilters = 12
 conv2_nfilters = 32
 fc1_nodes = 120
 fc2_nodes = 84
-learning_rate = 0.001
-activation = 'relu'
 
 
 model = Sequential()
