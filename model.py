@@ -7,6 +7,7 @@ from keras.layers.pooling import MaxPooling2D
 from keras.models import Sequential
 
 from argparse import ArgumentParser
+from sklearn.utils import shuffle
 
 from loader import data
 
@@ -24,6 +25,10 @@ args = parser.parse_args()
 print(args)
 
 X_train, y_train = data.load_data(args.log, args.images)
+
+# When computing validation split with Keras, the validation dataset
+# is the last X percent of the data. There is no shuffling.
+X_train, y_train = shuffle(X_train, y_train)
 
 input_shape = X_train.shape[1:]
 N = X_train.shape[0]
