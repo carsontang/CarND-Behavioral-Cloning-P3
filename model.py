@@ -4,6 +4,7 @@ from keras.layers.core import Activation
 from keras.layers.core import Dense
 from keras.layers.core import Dropout
 from keras.layers.core import Flatten
+from keras.layers.core import Lambda
 from keras.layers.pooling import MaxPooling2D
 from keras.models import Sequential
 
@@ -48,7 +49,8 @@ fc2_nodes = 84
 
 
 model = Sequential()
-model.add(Cropping2D(cropping=((70,20), (0,0)), input_shape=input_shape))
+model.add(Lambda(lambda x: (x/255.0) - 0.5, input_shape=input_shape))
+model.add(Cropping2D(cropping=((70,20), (0,0))))
 model.add(Conv2D(filters=conv1_nfilters, kernel_size=(5, 5)))
 model.add(Activation(activation))
 model.add(MaxPooling2D((2, 2)))
