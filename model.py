@@ -32,7 +32,10 @@ X_train, y_train = data.load_data(args.log, args.images)
 
 # When computing validation split with Keras, the validation dataset
 # is the last X percent of the data. There is no shuffling.
-np.random.shuffle(X_train, y_train)
+permutation = np.random.permutation(X_train.shape[0])
+X_train = X_train[permutation]
+y_train = y_train[permutation]
+# np.random.shuffle(X_train, y_train)
 
 input_shape = X_train.shape[1:]
 N = X_train.shape[0]
