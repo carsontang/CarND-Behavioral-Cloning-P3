@@ -1,4 +1,5 @@
 from keras.layers.convolutional import Conv2D
+from keras.layers.convolutional import Cropping2D
 from keras.layers.core import Activation
 from keras.layers.core import Dense
 from keras.layers.core import Dropout
@@ -46,7 +47,8 @@ fc2_nodes = 84
 
 
 model = Sequential()
-model.add(Conv2D(filters=conv1_nfilters, kernel_size=(5, 5), input_shape=input_shape))
+model.add(Cropping2D(cropping=((70,20), (0,0)), input_shape=input_shape))
+model.add(Conv2D(filters=conv1_nfilters, kernel_size=(5, 5)))
 model.add(Activation(activation))
 model.add(MaxPooling2D((2, 2)))
 model.add(Dropout(droprate))
