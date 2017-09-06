@@ -2,6 +2,7 @@ import csv
 import cv2
 import numpy as np
 import os
+import random
 
 def load_data(log, img_dir):
     images = []
@@ -11,22 +12,27 @@ def load_data(log, img_dir):
         next(reader)
         for line in reader:
             # load center, left, right camera images
-            for i in range(3):
-                image_path = line[i]
-                filename = image_path.split('/')[-1]
-                current_path = os.path.join(img_dir, filename)
-                image = cv2.imread(current_path)
-                images.append(image)
+            corrections = [0.0, 0.25, -0.25]
+            random_direction = random.choice([0, 1, 2])
+
+            # for i in range(3):
+            image_path = line[random_direction]
+            filename = image_path.split('/')[-1]
+            current_path = os.path.join(img_dir, filename)
+            image = cv2.imread(current_path)
+            images.append(image)
                 # images.append(cv2.flip(image, 1))
             steering_center = float(line[3])
-            correction = 0.25
-            steering_left = steering_center + correction
-            steering_right = steering_center - correction
-            measurements.append(steering_center)
+            steering_direction = steering_center + corrections[random_direction]
+            # correction = 0.25
+            # steering_left = steering_center + correction
+            # steering_right = steering_center - correction
+            measurements.append(steering_direction)
+            # measurements.append(steering_center)
             # measurements.append(-steering_center)
-            measurements.append(steering_left)
+            # measurements.append(steering_left)
             # measurements.append(-steering_left)
-            measurements.append(steering_right)
+            # measurements.append(steering_right)
             # measurements.append(-steering_right)
 
     # augment data
