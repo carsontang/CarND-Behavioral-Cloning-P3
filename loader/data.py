@@ -8,7 +8,7 @@ def load_data(log, img_dir):
     measurements = []
     with open(os.path.join(log)) as csvfile:
         reader = csv.reader(csvfile)
-        reader.readline() # skip header row
+        next(reader)
         for line in reader:
             # load center, left, right camera images
             for i in range(3):
