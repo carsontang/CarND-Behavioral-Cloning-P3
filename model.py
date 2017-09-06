@@ -49,7 +49,7 @@ fc2_nodes = 84
 
 
 model = Sequential()
-model.add(Lambda(lambda x: (x/255.0) - 0.5, input_shape=input_shape))
+model.add(Lambda(lambda x: (x/127.5) - 1, input_shape=input_shape))
 model.add(Cropping2D(cropping=((70,20), (0,0))))
 model.add(Conv2D(conv1_nfilters, 5, 5))
 model.add(Activation(activation))
