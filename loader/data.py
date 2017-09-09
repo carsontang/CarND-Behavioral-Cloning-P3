@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import os
 import random
+from scipy.misc import imread
 
 def load_data(log, img_dir):
     images = []
@@ -19,7 +20,7 @@ def load_data(log, img_dir):
             image_path = line[random_direction]
             filename = image_path.split('/')[-1]
             current_path = os.path.join(img_dir, filename)
-            image = cv2.imread(current_path)
+            image = imread(current_path)
             images.append(image)
                 # images.append(cv2.flip(image, 1))
             steering_center = float(line[3])
