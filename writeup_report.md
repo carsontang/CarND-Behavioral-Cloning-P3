@@ -77,7 +77,7 @@ The model has a total of 3,345,009 params, making it relatively easy to transfer
 
 ### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+To capture good driving behavior, I started off with the Udacity training set. Then I recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
 ![Center Lane Driving][image1]
 
