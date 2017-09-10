@@ -19,7 +19,7 @@ Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/4
 ---
 ## Files Submitted & Code Quality
 
-###1. Submission includes all required files and can be used to run the simulator in autonomous mode
+### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
 * model.py containing the script to create and train the model
@@ -43,7 +43,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 My model is based on the Comma.ai model for autonomous vehicles. The model includes ELU layers to introduce nonlinearity. The data is normalized in the model using a Keras lambda layer in the custom `loader` module. 
 
-####2. Attempts to reduce overfitting in the model
+### 2. Attempts to reduce overfitting in the model
 
 The model contains dropout layers in order to reduce overfitting. 
 
