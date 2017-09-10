@@ -55,7 +55,7 @@ The model used an Adam optimizer, so the learning rate was not tuned manually.
 
 ### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving and recovering from the left and right sides of the road
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving and recovering from the left and right sides of the road.
 
 For details about how I created the training data, see the next section. 
 
@@ -70,7 +70,7 @@ The overall strategy for deriving a model architecture was to use LeNet first to
 The final model architecture consisted of a convolution neural network with the following layers and layer sizes:
 
 ____________________________________________________________________________________________________
-Layer (type)                     Output Shape          Param #     Connected to
+Layer (type)                     Output Shape          Param Num     Connected to
 ====================================================================================================
 lambda_1 (Lambda)                (None, 160, 320, 3)   0           lambda_input_1[0][0]
 ____________________________________________________________________________________________________
