@@ -10,7 +10,37 @@ from keras.models import Sequential
 from argparse import ArgumentParser
 from sklearn.utils import shuffle
 
-from loader import data
+import csv
+import numpy as np
+import os
+from scipy.misc import imread
+
+def load_data(log, img_dir):
+    images = []
+    measurements = []
+    with open(os.path.join(log)) as csvfile:
+        reader = csv.reader(csvfile)
+        next(reader)
+        for line in reader:
+            # load center, left, right camera images
+            for i in range(3):
+                image_path = line[i]
+                filename = image_path.split('/')[-1]
+                current_path = os.path.join(img_dir, filename)
+                image = imread(current_path)
+                images.append(image)
+            steering_center = float(line[3])
+            correction = 0.25
+            steering_left = steering_center + correction
+            steering_right = steering_center - correction
+            measurements.append(steering_center)
+            measurements.append(steering_left)
+            measurements.append(steering_right)
+
+    X_train = np.array(images)
+    y_train = np.array(measurements)
+
+    return X_train, y_train
 
 parser = ArgumentParser(description='Train an autonomous vehicle model')
 parser.add_argument('-i', action="store", dest="images")
@@ -21,7 +51,7 @@ parser.add_argument('--batch_size', type=int, default=64)
 args = parser.parse_args()
 print(args)
 
-X_train, y_train = data.load_data(args.log, args.images)
+X_train, y_train = load_data(args.log, args.images)
 
 # When computing validation split with Keras, the validation dataset
 # is the last X percent of the data. There is no shuffling.
