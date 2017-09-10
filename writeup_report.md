@@ -41,7 +41,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 ### 1. An appropriate model architecture has been employed
 
-My model is based on the Comma.ai model for autonomous vehicles. The model includes ELU layers to introduce nonlinearity. The data is normalized in the model using a Keras lambda layer in the custom `loader` module. 
+My model is based on the Comma.ai model for autonomous vehicles. The model includes ELU layers to introduce nonlinearity. The data is normalized in the model using a Keras lambda layer.
 
 ### 2. Attempts to reduce overfitting in the model
 
@@ -55,7 +55,7 @@ The model used an Adam optimizer, so the learning rate was not tuned manually.
 
 ### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving and recovering from the left and right sides of the road
 
 For details about how I created the training data, see the next section. 
 
@@ -63,7 +63,7 @@ For details about how I created the training data, see the next section.
 
 ### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to use LeNet first to develop an overall feel of how well a simple convolutional neural network (CNN) would do on this track. I used the Udacity dataset, shuffled it, and split it 80% for training, 20% for validation. The validation dataset was used to combat overfitting. I trained for 10 epochs because any more often led to decreasing accuracy, and I wanted to iterate quickly on the model. I then tested out LeNet with only steering angles and images from the center camera. The CNN did well for most of the track, but it didn't make turns when it should have. Instead of swapping to a different architecture, I incorporated images from the left and right cameras, adjusted the steering corrections, and saw that the new amount of data helped somewhat. However, there were still times when the vehicle didn't stay on the track. Finally, I swapped out LeNet for Comma.ai's autonomous vehicle model, and the vehicle was able to make the proper turns at the right time in the simulator.
+The overall strategy for deriving a model architecture was to use LeNet first to develop an overall feel of how well a simple convolutional neural network (CNN) would do on this track. I used the Udacity dataset, shuffled it, and split it 80% for training, 20% for validation. The validation dataset was used to combat overfitting. I trained for 10 epochs because any more often led to decreasing accuracy, and I wanted to iterate quickly on the model. I then tested out LeNet with only steering angles and images from the center camera. The CNN did well for most of the track, but it didn't make turns when it should have. I also added data so that the vehicle could learn to recover if needed. Instead of swapping to a different architecture, I incorporated images from the left and right cameras, adjusted the steering corrections, and saw that the new amount of data helped somewhat. However, there were still times when the vehicle didn't stay on the track. Finally, I swapped out LeNet for Comma.ai's autonomous vehicle model, and the vehicle was able to make the proper turns at the right time in the simulator.
 
 ### 2. Final Model Architecture
 
