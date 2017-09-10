@@ -23,6 +23,7 @@ def load_data(log, img_dir):
         next(reader)
         for line in reader:
             # load center, left, right camera images
+            # and add steering corrections for the left and right camera images
             for i in range(3):
                 image_path = line[i]
                 filename = image_path.split('/')[-1]
