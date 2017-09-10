@@ -1,9 +1,5 @@
 python model.py \
-	-lr 0.0001 \
-	-l /Users/ctang/dev/CarND-Behavioral-Cloning-P3/data_udacity/driving_log.csv \
-	-i /Users/ctang/dev/CarND-Behavioral-Cloning-P3/data_udacity/IMG \
-	--epochs 10 \
-	--droprate 0.5 \
-	--activation 'relu' \
-	--conv1filters 24 \
-	--conv2filters 32
+  -l /home/carson/Documents/CarND-Behavioral-Cloning-P3/data/driving_log.csv \
+  -i /home/carson/Documents/CarND-Behavioral-Cloning-P3/data/IMG \
+  --epochs 10 \
+  --batch_size 64

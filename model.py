@@ -1,12 +1,10 @@
 from keras.layers.convolutional import Conv2D
 from keras.layers.convolutional import Cropping2D
-from keras.layers.core import Activation
 from keras.layers.core import Dense
 from keras.layers.core import Dropout
 from keras.layers.core import Flatten
 from keras.layers.core import Lambda
 from keras.layers import ELU
-from keras.layers.pooling import MaxPooling2D
 from keras.models import Sequential
 
 from argparse import ArgumentParser
@@ -18,12 +16,8 @@ parser = ArgumentParser(description='Train an autonomous vehicle model')
 parser.add_argument('-lr', type=float, default=None)
 parser.add_argument('-i', action="store", dest="images")
 parser.add_argument('-l', action="store", dest="log")
-parser.add_argument('--epochs', type=int, default=60)
-parser.add_argument('--droprate', type=float, default=0.5)
-parser.add_argument('--activation', action="store", dest="activation", default='relu')
-parser.add_argument('--conv1filters', type=int, default=12)
-parser.add_argument('--conv2filters', type=int, default=32)
-parser.add_argument('--batch_size', type=int, default=128)
+parser.add_argument('--epochs', type=int, default=10)
+parser.add_argument('--batch_size', type=int, default=64)
 
 args = parser.parse_args()
 print(args)
@@ -40,34 +34,9 @@ N = X_train.shape[0]
 print("Loaded %d samples of shape %s" % (N, input_shape))
 
 epochs = args.epochs
-learning_rate = args.lr
-droprate = args.droprate
-activation = args.activation
-conv1_nfilters = args.conv1filters
-conv2_nfilters = args.conv1filters
-fc1_nodes = 120
-fc2_nodes = 84
 
-
+# Use the comma.ai model
 model = Sequential()
-# model.add(Lambda(lambda x: (x/127.5) - 1, input_shape=input_shape))
-# model.add(Cropping2D(cropping=((70,20), (0,0))))
-# model.add(Conv2D(conv1_nfilters, 5, 5))
-# model.add(Activation(activation))
-# model.add(MaxPooling2D((2, 2)))
-# model.add(Dropout(droprate))
-# model.add(Conv2D(conv2_nfilters, 5, 5))
-# model.add(Activation(activation))
-# model.add(MaxPooling2D((2, 2)))
-# model.add(Dropout(droprate))
-# model.add(Flatten())
-# model.add(Dense(fc1_nodes))
-# model.add(Activation(activation))
-# model.add(Dropout(droprate))
-# model.add(Dense(fc2_nodes))
-# model.add(Activation(activation))
-# model.add(Dropout(droprate))
-# model.add(Dense(1))
 model.add(Lambda(lambda x: (x / 127.5) - 1., input_shape = (160, 320, 3)))
 model.add(Cropping2D(cropping=((70, 25), (0, 0)), input_shape = (160, 320, 3)))
 model.add(Conv2D(16, 8, 8, subsample = (4, 4), border_mode = "same"))
