@@ -13,7 +13,6 @@ from sklearn.utils import shuffle
 from loader import data
 
 parser = ArgumentParser(description='Train an autonomous vehicle model')
-parser.add_argument('-lr', type=float, default=None)
 parser.add_argument('-i', action="store", dest="images")
 parser.add_argument('-l', action="store", dest="log")
 parser.add_argument('--epochs', type=int, default=10)
