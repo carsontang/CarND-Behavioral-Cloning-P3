@@ -12,6 +12,7 @@ The goals / steps of this project are the following:
 
 [image1]: ./examples/center_2017_08_22_09_21_51_373.jpg "Center Lane"
 [image2]: ./examples/center_2017_08_23_08_29_01_357.jpg "Recovering"
+[image3]: ./examples/sdc_arch.png "Architecture"
 
 ## Rubric Points
 Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -69,37 +70,7 @@ The overall strategy for deriving a model architecture was to use LeNet first to
 
 The final model architecture consisted of a convolution neural network with the following layers and layer sizes:
 
-____________________________________________________________________________________________________
-Layer (type)                     Output Shape          Param Num     Connected to
-====================================================================================================
-lambda_1 (Lambda)                (None, 160, 320, 3)   0           lambda_input_1[0][0]
-____________________________________________________________________________________________________
-cropping2d_1 (Cropping2D)        (None, 65, 320, 3)    0           lambda_1[0][0]
-____________________________________________________________________________________________________
-convolution2d_1 (Convolution2D)  (None, 17, 80, 16)    3088        cropping2d_1[0][0]
-____________________________________________________________________________________________________
-elu_1 (ELU)                      (None, 17, 80, 16)    0           convolution2d_1[0][0]
-____________________________________________________________________________________________________
-convolution2d_2 (Convolution2D)  (None, 9, 40, 32)     12832       elu_1[0][0]
-____________________________________________________________________________________________________
-elu_2 (ELU)                      (None, 9, 40, 32)     0           convolution2d_2[0][0]
-____________________________________________________________________________________________________
-convolution2d_3 (Convolution2D)  (None, 5, 20, 64)     51264       elu_2[0][0]
-____________________________________________________________________________________________________
-flatten_1 (Flatten)              (None, 6400)          0           convolution2d_3[0][0]
-____________________________________________________________________________________________________
-dropout_1 (Dropout)              (None, 6400)          0           flatten_1[0][0]
-____________________________________________________________________________________________________
-elu_3 (ELU)                      (None, 6400)          0           dropout_1[0][0]
-____________________________________________________________________________________________________
-dense_1 (Dense)                  (None, 512)           3277312     elu_3[0][0]
-____________________________________________________________________________________________________
-dropout_2 (Dropout)              (None, 512)           0           dense_1[0][0]
-____________________________________________________________________________________________________
-elu_4 (ELU)                      (None, 512)           0           dropout_2[0][0]
-____________________________________________________________________________________________________
-dense_2 (Dense)                  (None, 1)             513         elu_4[0][0]
-====================================================================================================
+![Architecture][image3]
 
 The model has a total of 3,345,009 params, making it relatively easy to transfer between my computer used for training and my laptop used for running the model in a simulator.
 
