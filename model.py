@@ -43,8 +43,8 @@ def load_data(log, img_dir):
     return X_train, y_train
 
 parser = ArgumentParser(description='Train an autonomous vehicle model')
-parser.add_argument('-i', action="store", dest="images")
-parser.add_argument('-l', action="store", dest="log")
+parser.add_argument('-i', action="store", dest="images", default="/home/carson/Documents/CarND-Behavioral-Cloning-P3/data/IMG")
+parser.add_argument('-l', action="store", dest="log", default="/home/carson/Documents/CarND-Behavioral-Cloning-P3/data/driving_log.csv")
 parser.add_argument('--epochs', type=int, default=10)
 parser.add_argument('--batch_size', type=int, default=64)
 
